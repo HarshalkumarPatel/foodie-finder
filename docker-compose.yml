@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "4000:3000"  
+      
+    networks:
+      - foodie-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"    
+    depends_on:
+      - backend
+    networks:
+      - foodie-net
+
+networks:
+  foodie-net:
+    driver: bridge
